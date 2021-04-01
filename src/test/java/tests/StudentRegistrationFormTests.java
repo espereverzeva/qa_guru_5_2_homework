@@ -24,7 +24,7 @@ public class StudentRegistrationFormTests {
             picture = "123.png",
             currentAddress = "Montenegro 150",
             state = "Uttar Pradesh",
-            city = "Haryana";
+            city = "Agra";
 
 
     @Test
@@ -53,14 +53,24 @@ public class StudentRegistrationFormTests {
         $("#currentAddress").val(currentAddress);
         $("#state").scrollTo().click();
         $("#stateCity-wrapper").$(byText(state)).click();
-        $("#state").click();
+        $("#city").click();
         $("#stateCity-wrapper").$(byText(city)).click();
         $("#submit").click();
 
         // Then
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text(firstName + " " + lastName), text(email), text(gender));
-        $(byText("Student Name")).parent().shouldHave(text(firstName + " " + lastName));
+        $(".table-responsive").shouldHave(
+                text(firstName + " " + lastName),
+                text(email),
+                text(gender),
+                text(mobile),
+                text(dayOfBirch + " " + monthOfBirch+ "," + yearOfBirch),
+                text(subject1),
+                text(hobby1 + ", " + hobby2 + "," + " " + hobby3),
+                text(picture),
+                text(currentAddress),
+                text(state + " " + city)
+        );
         $("#closeLargeModal").click();
     }
 }
